@@ -2,8 +2,8 @@
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="me.ore.logback.gson.layout.LogbackGsonLayout">
-                <charset>UTF-8</charset>
-                <lineSeparator>&quot;&#0013;&#0010;&quot;</lineSeparator>
+                <logLineSeparator>&quot;&#0013;&#0010;&quot;</logLineSeparator>
+                <stackTraceLineSeparator>&quot;&#0013;&#0010;&quot;</stackTraceLineSeparator>
                 <propertySequenceNumber>sequenceNumber</propertySequenceNumber>
                 <propertyTimestamp>timestamp</propertyTimestamp>
                 <propertyThread>thread</propertyThread>

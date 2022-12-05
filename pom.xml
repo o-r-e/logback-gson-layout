@@ -6,7 +6,7 @@
 
     <artifactId>logback-gson-layout</artifactId>
     <groupId>me.o-r-e</groupId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>Logback JSON layout based on GSON</name>
     <description>Layout for Logback, which converts log events to JSON objects using GSON</description>
     <url>https://github.com/o-r-e/logback-gson-layout</url>
@@ -91,6 +91,10 @@
                     <id>ossrh</id>
                     <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
             </distributionManagement>
 
             <build>
