@@ -6,7 +6,7 @@
 
     <artifactId>logback-gson-layout</artifactId>
     <groupId>me.o-r-e</groupId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>Logback JSON layout based on GSON</name>
     <description>Layout for Logback, which converts log events to JSON objects using GSON</description>
     <url>https://github.com/o-r-e/logback-gson-layout</url>

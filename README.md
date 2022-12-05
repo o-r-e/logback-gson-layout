@@ -48,11 +48,11 @@ Download as maven dependency:
 <dependency>
   <groupId>me.o-r-e</groupId>
   <artifactId>logback-gson-layout</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 </dependency>
 ```
 
-Binaries and other examples can be found at https://search.maven.org/artifact/me.o-r-e/logback-gson-layout/0.0.1/jar.
+Binaries and other examples can be found at https://search.maven.org/artifact/me.o-r-e/logback-gson-layout/0.0.2/jar.
 
 ## How to use
 
