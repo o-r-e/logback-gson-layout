@@ -1,0 +1,7 @@
+logback-gson-layout (Logback JSON layout based on GSON)
+Copyright 2021 Obuhov R.
+
+This product uses (refers to) software:
+- SLF4J (https://github.com/qos-ch/slf4j, https://github.com/qos-ch/slf4j/blob/master/LICENSE.txt, MIT License);
+- Logback (https://github.com/qos-ch/logback, https://github.com/qos-ch/logback/blob/master/LICENSE.txt, Eclipse Public License v1.0);
+- GSON (https://github.com/google/gson, https://github.com/google/gson/blob/master/LICENSE, Apache License 2.0).
