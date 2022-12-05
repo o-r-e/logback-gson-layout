@@ -81,6 +81,7 @@ for example:
     <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
         <layout class="me.ore.logback.gson.layout.LogbackGsonLayout">
             <logLineSeparator>&amp;quot;&amp;#0013;&amp;#0010;&amp;quot;</logLineSeparator>
+            <stackTraceLineSeparator>&quot;&#0013;&#0010;&quot;</stackTraceLineSeparator>
             <propertySequenceNumber>sequenceNumber</propertySequenceNumber>
             <propertyTimestamp>timestamp</propertyTimestamp>
             <propertyThread>thread</propertyThread>
