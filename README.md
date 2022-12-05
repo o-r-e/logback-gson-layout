@@ -80,7 +80,7 @@ for example:
 <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
         <layout class="me.ore.logback.gson.layout.LogbackGsonLayout">
-            <logLineSeparator>&amp;quot;&amp;#0013;&amp;#0010;&amp;quot;</logLineSeparator>
+            <logLineSeparator>&quot;&#0013;&#0010;&quot;</logLineSeparator>
             <stackTraceLineSeparator>&quot;&#0013;&#0010;&quot;</stackTraceLineSeparator>
             <propertySequenceNumber>sequenceNumber</propertySequenceNumber>
             <propertyTimestamp>timestamp</propertyTimestamp>
