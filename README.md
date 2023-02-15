@@ -48,11 +48,11 @@ Download as maven dependency:
 <dependency>
   <groupId>me.o-r-e</groupId>
   <artifactId>logback-gson-layout</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
-Binaries and other examples can be found at https://search.maven.org/artifact/me.o-r-e/logback-gson-layout/0.0.2/jar.
+Binaries and other examples can be found at https://search.maven.org/artifact/me.o-r-e/logback-gson-layout/0.0.3/jar.
 
 ## How to use
 
@@ -89,6 +89,7 @@ for example:
             <propertyLogger>logger</propertyLogger>
             <propertyMessage>message</propertyMessage>
             <propertyError>error</propertyError>
+            <defaultMessage>[NO-MSG]</defaultMessage>
             <gsonBuilderConfigurer>me.ore.logback.gson.layout.test.Config</gsonBuilderConfigurer>
         </layout>
     </encoder>
@@ -155,6 +156,11 @@ This line separator which separates lines of error stack trace.
 <tr>
 <td>propertyError</td>
 <td><code>&quot;error&quot;</code></td>
+</tr>
+<tr>
+<td>defaultMessage</td>
+<td><code>&quot;&quot;</code></td>
+<td>This text will replace blank log event message. &quot;Blank&quot; - empty message or message with space characters only.</td>
 </tr>
 
 <tr>

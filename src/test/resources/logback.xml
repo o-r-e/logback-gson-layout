@@ -11,6 +11,7 @@
                 <propertyLogger>logger</propertyLogger>
                 <propertyMessage>message</propertyMessage>
                 <propertyError>error</propertyError>
+                <defaultMessage>[NO-MSG]</defaultMessage>
                 <gsonBuilderConfigurer>me.ore.logback.gson.layout.test.Config</gsonBuilderConfigurer>
             </layout>
         </encoder>

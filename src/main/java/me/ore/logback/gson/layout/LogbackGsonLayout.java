@@ -27,6 +27,8 @@ import java.util.function.Function;
 @SuppressWarnings("unused")
 public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
     // region Class constants
+    private static final Object LOCK = new Object();
+
     private static final AtomicLong SEQUENCE = new AtomicLong(Long.MIN_VALUE);
 
 
@@ -131,6 +133,19 @@ public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
      * @see #setPropertyError(String)
      */
     public static final String PROPERTY_ERROR = "error";
+
+
+    /**
+     * Default value for &quot;message&quot; property
+     *
+     * <p>
+     * &quot;Message&quot; - message of log event
+     * </p>
+     *
+     * @see #getDefaultMessage()
+     * @see #setDefaultMessage(String)
+     */
+    public static final String DEFAULT_MESSAGE = "";
     // endregion
 
 
@@ -228,10 +243,17 @@ public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
     // region Utils
     private static <T> T valueOrDefault(T value, T defaultValue) { return (value == null ? defaultValue : value); }
 
+    private static String valueOrDefault(String value, String defaultValue, @SuppressWarnings("SameParameterValue") boolean replaceBlankValue) {
+        if (value == null) return defaultValue;
+        if (replaceBlankValue && (value.trim().length() == 0)) return defaultValue;
+        return value;
+    }
+
     private static String readThrowable(String stackTraceLineSeparator, IThrowableProxy source) {
         if (source == null) return null;
 
         StringBuilder resultBuilder = new StringBuilder();
+        //noinspection SpellCheckingInspection
         HashSet<IThrowableProxy> passedThrowables = new HashSet<>();
         boolean first = true;
         IThrowableProxy currentThrowable = source;
@@ -244,6 +266,7 @@ public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
             }
 
             if (passedThrowables.contains(currentThrowable)) {
+                //noinspection SpellCheckingInspection
                 resultBuilder.append("[Cyclic chain of throwables detected]");
                 break;
             }
@@ -580,6 +603,37 @@ public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
     public void setGsonBuilderConfigurer(String gsonBuilderConfigurer) { this.gsonBuilderConfigurer = gsonBuilderConfigurer; }
 
     private Gson gson;
+
+
+    private String defaultMessage = DEFAULT_MESSAGE;
+
+    /**
+     * Gets default value for &quot;message&quot; property
+     *
+     * <p>
+     * &quot;Message&quot; - message of log event
+     * </p>
+     *
+     * @return default value
+     *
+     * @see #DEFAULT_MESSAGE
+     * @see #setDefaultMessage(String)
+     */
+    public String getDefaultMessage() { return this.defaultMessage; }
+
+    /**
+     * Sets default value for &quot;message&quot; property
+     *
+     * <p>
+     * &quot;Message&quot; - message of log event
+     * </p>
+     *
+     * @param defaultMessage new property name
+     *
+     * @see #DEFAULT_MESSAGE
+     * @see #getDefaultMessage()
+     */
+    public void setDefaultMessage(String defaultMessage) { this.defaultMessage = defaultMessage; }
     // endregion
 
 
@@ -601,7 +655,7 @@ public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
         Object gsonBuilderConfigurerRaw = null;
         if (gsonBuilderConfigurerClass != null) {
             try {
-                gsonBuilderConfigurerRaw = gsonBuilderConfigurerClass.newInstance();
+                gsonBuilderConfigurerRaw = gsonBuilderConfigurerClass.getDeclaredConstructor().newInstance();
             } catch (Exception e) {
                 throw new RuntimeException("Cannot create instance of class \"" + gsonBuilderConfigurerClass.getName() + "\"", e);
             }
@@ -650,7 +704,7 @@ public class LogbackGsonLayout extends LayoutBase<ILoggingEvent> {
                 jsonWriter.name(propertyLogger).value(valueOrDefault(event.getLoggerName(), ""));
 
                 String propertyMessage = this.getPropertyMessage();
-                jsonWriter.name(propertyMessage).value(valueOrDefault(event.getFormattedMessage(), ""));
+                jsonWriter.name(propertyMessage).value(valueOrDefault(event.getFormattedMessage(), this.getDefaultMessage(), true));
 
                 String propertyError = this.getPropertyError();
                 String throwableText = readThrowable(this.getStackTraceLineSeparator(), event.getThrowableProxy());

@@ -24,5 +24,6 @@ public class Config implements LogbackGsonBuilderConfigurer {
     public void configure(GsonBuilder gsonBuilder) {
         // gsonBuilder.setPrettyPrinting();
         gsonBuilder.registerTypeHierarchyAdapter(Date.class, new DateSerializer());
+        gsonBuilder.disableHtmlEscaping();
     }
 }

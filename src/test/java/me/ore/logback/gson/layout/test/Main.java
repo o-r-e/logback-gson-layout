@@ -38,5 +38,9 @@ public class Main {
                 }
             });
         }
+
+        System.out.println("----");
+
+        LOGGER.info("", new RuntimeException("Test"));
     }
 }
